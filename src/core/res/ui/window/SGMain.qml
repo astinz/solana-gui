@@ -13,6 +13,10 @@ ApplicationWindow {
     property int preX
     property int preY
 
+    SGClusterPopup {
+        id: idClusterPopup
+    }
+
     Rectangle {
         width: parent.width
         height: parent.height
@@ -121,8 +125,8 @@ ApplicationWindow {
                 }
 
                 Text {
-                    id: cluster
-                    text: qsTr("Connected: localhost - Solana GUI")
+                    id: idClusterConnect
+                    text: "Connected: " + idClusterChoice.currentText + " - Solana GUI"
                     color: "#777777"
                     anchors.verticalCenter: parent.verticalCenter
                     anchors.horizontalCenter: parent.horizontalCenter
@@ -171,9 +175,23 @@ ApplicationWindow {
                         source: "../../img/svg/switchView_dark.svg"
                     }
                     SGCombo {
+                        id: idClusterChoice
                         width: 170
                         height: parent.height - 4
                         anchors.verticalCenter: parent.verticalCenter
+                        onSelected: () => {
+                            switch (highlightedIndex) {
+                            case 0:
+                                break;
+                            case 1:
+                                break;
+                            case 2:
+                                break;
+                            case 3:
+                                idClusterPopup.open();
+                                break;
+                            }
+                        }
                     }
                     SGTool {
                         source: "../../img/svg/toolWindowFind_dark.svg"

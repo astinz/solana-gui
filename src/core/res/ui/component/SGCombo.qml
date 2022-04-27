@@ -4,6 +4,7 @@ import QtQuick.Controls
 ComboBox {
     id: root
     model: ["Mainnet Beta", "Testnet", "Devnet", "Custom RPC URL"]
+    signal selected
 
     background: Rectangle {
         implicitWidth: 120
@@ -53,10 +54,13 @@ ComboBox {
     }
 
     delegate: SGItemDelegate {
-        text: modelData
-        width: parent.width
         required property int index
         required property string modelData
+        text: modelData
+        width: parent.width
+        onClicked: function () {
+            root.selected();
+        }
     }
 
     popup: Popup {
